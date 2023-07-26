@@ -135,8 +135,8 @@
 #define PWM_BUFFER_SIZE 1024
 #endif
 
-#ifndef PWM_BUFFERS 
-#define PWM_BUFFERS 4
+#ifndef PWM_BUFFER_COUNT 
+#define PWM_BUFFER_COUNT 4
 #endif
 
 #ifndef PWM_AUDIO_FREQUENCY 
@@ -603,6 +603,8 @@ using WiFiServerSecure = BearSSL::WiFiServerSecure;
 #define PIN_ANALOG_START A0
 #define ANALOG_BUFFER_SIZE 512
 #define ANALOG_BUFFERS 5
+#define ANALOG_MAX_OUT_CHANNELS 1
+#define ANALOG_MAX_SAMPLE_RATE 16000
 // default pins for UNO VS1053 shield
 #define VS1053_CS 6 
 #define VS1053_DCS 7 
@@ -677,6 +679,10 @@ typedef WiFiClient WiFiClientSecure;
 #  define INLINE_VAR inline 
 #else
 #  define INLINE_VAR static 
+#endif
+
+#ifndef ANALOG_MAX_SAMPLE_RATE
+#  define ANALOG_MAX_SAMPLE_RATE 44000
 #endif
 
 #pragma GCC diagnostic ignored "-Wunused-variable"

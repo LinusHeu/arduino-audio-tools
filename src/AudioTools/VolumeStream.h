@@ -294,7 +294,7 @@ class VolumeStream : public AudioStream {
         void applyVolume16(int16_t* data, size_t size){
             for (size_t j=0;j<size;j++){
                 #ifdef PREFER_FIXEDPOINT
-                int32_t result = (data[j] * factorForChannel(j%info.channels)) >> 6;
+                int32_t result = (data[j] * factorForChannel(j%info.channels)) >> 6; //Fixedpoint-Math from https://github.com/earlephilhower/ESP8266Audio/blob/0abcf71012f6128d52a6bcd155ed1404d6cc6dcd/src/AudioOutput.h#L67
                 #else
                 float result = factorForChannel(j%info.channels) * data[j];
                 #endif
