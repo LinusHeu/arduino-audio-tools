@@ -18,8 +18,8 @@ namespace audio_tools {
  */
 class AnalogConfig : public AudioInfo {
   public:
-    int buffer_count = I2S_BUFFER_COUNT;
-    int buffer_size = I2S_BUFFER_SIZE;
+    int buffer_count = PWM_BUFFER_COUNT;
+    int buffer_size = PWM_BUFFER_SIZE;
     RxTxMode rx_tx_mode;
     bool is_blocking_write = true;
     bool is_auto_center_read = true;
@@ -132,7 +132,7 @@ class AnalogConfig : public AudioInfo {
     }  
 #else 
     AnalogConfig() {
-        sample_rate = 10000;
+        sample_rate = 44100;
         bits_per_sample = 16;
         channels = 2;
         buffer_size = ANALOG_BUFFER_SIZE;
@@ -151,12 +151,13 @@ class AnalogConfig : public AudioInfo {
 
 class AnalogDriverBase {
 public:
-    virtual bool begin(AnalogConfig cfg);
-    virtual void end();
+    virtual bool begin(AnalogConfig cfg) = 0;
+    virtual void end() = 0;
 //  virtual void setMaxSampleRate() {}
     virtual size_t write(const uint8_t *src, size_t size_bytes) { return 0;}
-    virtual size_t readBytes(uint8_t *dest, size_t size_bytes);
-    virtual int available();
+    virtual size_t readBytes(uint8_t *dest, size_t size_bytes) = 0;
+    virtual int available() = 0;
+    virtual int availableForWrite() { return DEFAULT_BUFFER_SIZE; }
 };
 
 } // ns
