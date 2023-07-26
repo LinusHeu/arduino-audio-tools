@@ -189,6 +189,7 @@ class VolumeStream : public AudioStream {
               volume_values[channel]=volume_value;
               #ifdef PREFER_FIXEDPOINT
               //convert float to fixed point 2.6
+              //Fixedpoint-Math from https://github.com/earlephilhower/ESP8266Audio/blob/0abcf71012f6128d52a6bcd155ed1404d6cc6dcd/src/AudioOutput.h#L67
               if(factor > 4.0) factor = 4.0;//factor can only be >1 if allow_boost == true TODO: should we update volume_values[channel] if factor got clipped to 4.0?
               uint8_t factorF2P6 = (uint8_t) (factor*(1<<6)); //TODO actually factor could be higher than 4.0? (all 1 after decimal)
               factor_for_channel[channel] = factorF2P6;
