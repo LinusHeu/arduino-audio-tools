@@ -101,11 +101,13 @@ class I2SDriverRP2040 {
         LOGE("Could not start I2S");
         return false;
       }
+      //delay(1000);
       return true;
     }
 
     /// stops the I2C and uninstalls the driver
     void end() {
+      //TRACEI();
       flush();
       i2s.end();
     }

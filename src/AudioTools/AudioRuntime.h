@@ -14,6 +14,7 @@ inline void stop() {
     exit(0);
   #else
     while(true){
+      //Serial.println("STOP");
       delay(1000);
     }
   #endif
