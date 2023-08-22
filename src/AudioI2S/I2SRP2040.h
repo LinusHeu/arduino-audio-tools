@@ -31,7 +31,7 @@ class I2SDriverRP2040 {
 
     /// starts the DAC with the default config in TX Mode
     bool begin(RxTxMode mode = TX_MODE) {
-      TRACED();
+      TRACEI();
       return begin(defaultConfig(mode));
     }
 
@@ -107,7 +107,7 @@ class I2SDriverRP2040 {
 
     /// stops the I2C and uninstalls the driver
     void end() {
-      //TRACEI();
+      TRACEI();
       flush();
       i2s.end();
     }
